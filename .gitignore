@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local editor settings
+.vscode/
+
+# local agent/tooling files
+.agents/
+managed_context/
+skills-lock.json
+test_suite_analysis/
+.qodo/
