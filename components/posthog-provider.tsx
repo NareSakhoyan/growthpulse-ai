@@ -9,7 +9,16 @@ type PostHogProviderProps = {
   children: React.ReactNode;
 };
 
-export function PostHogProvider({ children }: PostHogProviderProps) {
+/**
+ * Initializes PostHog once on the client and manually records pageviews for
+ * App Router navigations.
+ *
+ * @param props - The provider props.
+ * @param props.children - The rendered application subtree.
+ * @returns `PostHogProvider` returns the application subtree while attaching
+ * client-side PostHog initialization and pageview tracking.
+ */
+export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.Element {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -17,7 +26,14 @@ export function PostHogProvider({ children }: PostHogProviderProps) {
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
-    if (!key || !host || posthog.__loaded) {
+    if (!key || !host) {
+      console.warn(
+        'PostHog is disabled because NEXT_PUBLIC_POSTHOG_KEY or NEXT_PUBLIC_POSTHOG_HOST is missing.',
+      );
+      return;
+    }
+
+    if (posthog.__loaded) {
       return;
     }
 
