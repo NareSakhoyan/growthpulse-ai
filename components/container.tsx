@@ -19,8 +19,6 @@ type ContainerProps = {
  */
 export function Container({ children, className }: ContainerProps): React.JSX.Element {
   return (
-    <div className={cn('mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8', className)}>
-      {children}
-    </div>
+    <div className={cn('mx-auto w-full max-w-300 px-5 sm:px-6 lg:px-8', className)}>{children}</div>
   );
 }

@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { PostHogProvider } from '@/components/posthog-provider';
 import { Toaster } from '@/components/ui/sonner';
 
+import { TooltipProvider } from '@/components/ui/tooltip';
 import './globals.css';
 
 const geistSans = Geist({
@@ -48,7 +49,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className='min-h-full flex flex-col' suppressHydrationWarning>
-        <PostHogProvider>{children}</PostHogProvider>
+        <PostHogProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </PostHogProvider>
         <Toaster />
       </body>
     </html>
