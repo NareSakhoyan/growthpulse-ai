@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { GlassCtaButton } from '@/components/ui/glass-cta-button';
 import {
   BadgeCheckIcon,
   BlocksIcon,
@@ -44,23 +44,23 @@ const features = [
 
 export function FeaturesSection(): React.JSX.Element {
   return (
-    <section id='features' className='scroll-mt-24'>
-      <Card>
-        <CardHeader className='gap-4'>
-          <Badge className='w-fit' variant='outline'>
-            Features
-          </Badge>
+    <section
+      id='features'
+      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_88%_18%,rgba(251,191,36,0.18),transparent_18%),radial-gradient(circle_at_12%_82%,rgba(248,113,113,0.12),transparent_18%),linear-gradient(180deg,rgba(255,252,245,0.98),rgba(248,250,252,0.94))] py-8 sm:py-10'
+    >
+      <div className='space-y-8 px-4 sm:px-6'>
+        <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
-            <CardTitle className='text-3xl sm:text-4xl'>
+            <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               Everything needed to audit a SaaS landing page like an operating system.
-            </CardTitle>
-            <CardDescription className='text-base'>
+            </h2>
+            <p className='text-base leading-7 text-muted-foreground'>
               The Features section stays compact inside the sidebar layout while still surfacing the
               core capabilities that make the audit useful.
-            </CardDescription>
+            </p>
           </div>
-        </CardHeader>
-        <CardContent className='grid gap-4 md:grid-cols-2 xl:grid-cols-3'>
+        </div>
+        <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-3'>
           {features.map((feature) => {
             const Icon = feature.icon;
 
@@ -97,13 +97,13 @@ export function FeaturesSection(): React.JSX.Element {
                   from the same diagnosis.
                 </CardDescription>
               </div>
-              <Button asChild className='w-fit' variant='outline'>
+              <GlassCtaButton asChild className='w-fit' tone='soft'>
                 <a href='#pricing'>View plans</a>
-              </Button>
+              </GlassCtaButton>
             </CardHeader>
           </Card>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </section>
   );
 }

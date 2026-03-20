@@ -14,8 +14,8 @@ export default function Home() {
       <div className='flex flex-1'>
         <AppSidebar />
         <SidebarInset>
-          <div className='flex flex-1 flex-col gap-4 p-4 sm:p-6'>
-            <div className='mx-auto flex w-full max-w-6xl flex-col gap-6'>
+          <div className='flex flex-1 flex-col'>
+            <div className='flex w-full flex-col'>
               <OverviewSection />
               <FeaturesSection />
               <PricingSection />
