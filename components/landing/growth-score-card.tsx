@@ -44,7 +44,7 @@ export function GrowthScoreCard(): React.JSX.Element {
   );
 
   return (
-    <Card className='h-fit self-start border-white/10 bg-white/5 text-white shadow-none'>
+    <Card className='h-fit w-full border-white/10 bg-white/5 text-white shadow-none'>
       <CardHeader className='space-y-4'>
         <div className='flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'>
           <div className='space-y-2'>

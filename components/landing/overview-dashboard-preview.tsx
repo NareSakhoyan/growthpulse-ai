@@ -1,4 +1,4 @@
-import { ActionPlanList } from '@/components/landing/action-plan-list';
+import { ActionPlanRoadmap } from '@/components/landing/action-plan-roadmap';
 import { GrowthScoreCard } from '@/components/landing/growth-score-card';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -34,9 +34,11 @@ export function OverviewDashboardPreview(): React.JSX.Element {
         </div>
       </CardHeader>
 
-      <CardContent className='grid items-start gap-4 p-5 sm:p-6 lg:grid-cols-[1.2fr_0.8fr]'>
+      <CardContent className='flex flex-col gap-6 p-5 sm:p-6'>
         <GrowthScoreCard />
-        <ActionPlanList />
+        <section className='border-t border-white/10 pt-6'>
+          <ActionPlanRoadmap />
+        </section>
       </CardContent>
     </Card>
   );

@@ -28,6 +28,10 @@ let posthogPromise: Promise<PostHogClient | null> | null = null;
 const queuedCaptures: QueuedCapture[] = [];
 
 function getPostHogConfig(): { key: string; host: string } | null {
+  if (process.env.NODE_ENV !== 'production') {
+    return null;
+  }
+
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
