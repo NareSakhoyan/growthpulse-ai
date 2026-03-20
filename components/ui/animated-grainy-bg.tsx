@@ -10,7 +10,7 @@ export type GrainyAnimatedBgProps = {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  colors?: string[];
+  colors?: readonly string[];
   speed?: number;
   grainType?: 'digital' | 'plasma' | 'scratches' | 'paper' | 'noise' | 'dust';
   grainIntensity?: number;
@@ -111,7 +111,7 @@ function getGrainSVG(
 
 function getGradientPattern(
   pattern: NonNullable<GrainyAnimatedBgProps['animationType']>,
-  colors: string[],
+  colors: readonly string[],
   darkMode = false,
 ): string {
   const defaultColors = darkMode
@@ -352,7 +352,14 @@ export function AnimatedGrainyBg({
 
   const variants: Variants = React.useMemo(() => {
     const baseSpeed = 25 / speed;
-    const animationConfigs = {
+    const animationConfigs: Record<
+      NonNullable<GrainyAnimatedBgProps['animationType']>,
+      {
+        backgroundPosition: string[];
+        backgroundSize: string[];
+        duration: number;
+      }
+    > = {
       flow: {
         backgroundPosition: ['0% 0%', '100% 100%', '0% 100%', '100% 0%', '0% 0%'],
         backgroundSize: ['400% 400%', '600% 600%', '400% 400%'],
@@ -399,7 +406,7 @@ export function AnimatedGrainyBg({
         backgroundSize: ['300% 300%', '900% 900%', '300% 300%'],
         duration: baseSpeed * 0.7,
       },
-    } as const;
+    };
 
     const config = animationConfigs[animationType] ?? animationConfigs.mesh;
 

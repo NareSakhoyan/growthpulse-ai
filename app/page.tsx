@@ -8,7 +8,6 @@ import { PricingSection } from '@/components/landing/pricing-section';
 import { SocialProofSection } from '@/components/landing/social-proof-section';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
 export const metadata: Metadata = {
   title: 'AI Marketing Audit for SaaS Teams',
@@ -22,23 +21,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default function Home(): React.JSX.Element {
   return (
-    <SidebarProvider className='flex min-h-svh flex-col'>
+    <>
       <SiteHeader />
-      <div className='flex flex-1'>
+      <div className='mx-auto flex w-full max-w-[1600px] flex-1 gap-8 px-4 sm:px-6 lg:px-8'>
         <AppSidebar />
-        <SidebarInset>
-          <main id='main-content' className='flex flex-1 flex-col'>
-            <OverviewSection />
-            <FeaturesSection />
-            <PricingSection />
-            <SocialProofSection />
-            <GetAuditSection />
-            <SiteFooter />
-          </main>
-        </SidebarInset>
+        <main id='main-content' className='min-w-0 flex-1'>
+          <OverviewSection />
+          <FeaturesSection />
+          <PricingSection />
+          <SocialProofSection />
+          <GetAuditSection />
+          <SiteFooter />
+        </main>
       </div>
-    </SidebarProvider>
+    </>
   );
 }

@@ -1,63 +1,78 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import posthog from 'posthog-js';
 
-import { analyticsEvents, captureEvent } from '@/lib/posthog';
+import { analyticsEvents, captureEvent, capturePageview, preloadPostHog } from '@/lib/posthog';
 
 type PostHogProviderProps = {
   children: React.ReactNode;
 };
 
-/**
- * Initializes PostHog once on the client and manually records pageviews for
- * App Router navigations.
- *
- * @param props - The provider props.
- * @param props.children - The rendered application subtree.
- * @returns `PostHogProvider` returns the application subtree while attaching
- * client-side PostHog initialization and pageview tracking.
- */
-export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.Element {
+function PostHogTracker(): null {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentUrlRef = useRef('');
+  const hasLoadedAnalyticsRef = useRef(false);
 
   useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-    const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+    function startAnalytics(): void {
+      if (hasLoadedAnalyticsRef.current) {
+        return;
+      }
 
-    if (!key || !host) {
-      console.warn(
-        'PostHog is disabled because NEXT_PUBLIC_POSTHOG_KEY or NEXT_PUBLIC_POSTHOG_HOST is missing.',
-      );
-      return;
+      hasLoadedAnalyticsRef.current = true;
+      preloadPostHog();
+
+      if (currentUrlRef.current) {
+        capturePageview(currentUrlRef.current);
+      }
     }
 
-    if (posthog.__loaded) {
-      return;
+    function scheduleStart(): () => void {
+      if (typeof window.requestIdleCallback === 'function') {
+        const idleCallbackId = window.requestIdleCallback(() => {
+          startAnalytics();
+        });
+
+        return () => window.cancelIdleCallback(idleCallbackId);
+      }
+
+      const timeoutId = window.setTimeout(() => {
+        startAnalytics();
+      }, 1500);
+
+      return () => window.clearTimeout(timeoutId);
     }
 
-    posthog.init(key, {
-      api_host: host,
-      capture_pageview: false,
-      capture_pageleave: true,
-      person_profiles: 'identified_only',
-    });
+    let cleanupScheduledStart: (() => void) | undefined;
+
+    const handleLoad = (): void => {
+      cleanupScheduledStart = scheduleStart();
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener('load', handleLoad);
+      cleanupScheduledStart?.();
+    };
   }, []);
 
   useEffect(() => {
-    if (!posthog.__loaded) {
-      return;
-    }
-
     const query = searchParams.toString();
     const url = query ? `${pathname}?${query}` : pathname;
 
-    posthog.capture('$pageview', {
-      $current_url: url,
-    });
+    currentUrlRef.current = url;
+
+    if (hasLoadedAnalyticsRef.current) {
+      capturePageview(url);
+    }
   }, [pathname, searchParams]);
 
   useEffect(() => {
@@ -65,6 +80,10 @@ export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.E
     const thresholds = [25, 50, 75, 100];
 
     function trackScrollDepth(): void {
+      if (!hasLoadedAnalyticsRef.current) {
+        return;
+      }
+
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollHeight <= 0 ? 100 : Math.round((window.scrollY / scrollHeight) * 100);
 
@@ -79,11 +98,30 @@ export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.E
       });
     }
 
-    trackScrollDepth();
     window.addEventListener('scroll', trackScrollDepth, { passive: true });
 
     return () => window.removeEventListener('scroll', trackScrollDepth);
   }, [pathname]);
 
-  return children;
+  return null;
+}
+
+/**
+ * Initializes PostHog once on the client and manually records pageviews for
+ * App Router navigations.
+ *
+ * @param props - The provider props.
+ * @param props.children - The rendered application subtree.
+ * @returns `PostHogProvider` returns the application subtree while attaching
+ * client-side PostHog initialization and pageview tracking.
+ */
+export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.Element {
+  return (
+    <>
+      {children}
+      <Suspense fallback={null}>
+        <PostHogTracker />
+      </Suspense>
+    </>
+  );
 }

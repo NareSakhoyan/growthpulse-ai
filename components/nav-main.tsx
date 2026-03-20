@@ -8,16 +8,14 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon: React.ReactNode;
-    isActive?: boolean;
-  }[];
-}) {
+type NavMainItem = {
+  title: string;
+  url: string;
+  icon: React.ReactNode;
+  isActive?: boolean;
+};
+
+export function NavMain({ items }: { items: readonly NavMainItem[] }): React.JSX.Element {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>

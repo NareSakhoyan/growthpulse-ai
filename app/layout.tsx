@@ -2,9 +2,6 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import { PostHogProvider } from '@/components/posthog-provider';
-import { Toaster } from '@/components/ui/sonner';
-
-import { TooltipProvider } from '@/components/ui/tooltip';
 import './globals.css';
 
 const geistSans = Geist({
@@ -55,10 +52,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <PostHogProvider>
-          <TooltipProvider>{children}</TooltipProvider>
-        </PostHogProvider>
-        <Toaster />
+        <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
   );

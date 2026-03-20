@@ -1,13 +1,8 @@
-'use client';
-
 import { SocialProofLogos } from '@/components/landing/social-proof/social-proof-logos';
 import { SocialProofStats } from '@/components/landing/social-proof/social-proof-stats';
 import { SocialProofTestimonials } from '@/components/landing/social-proof/social-proof-testimonials';
-import { useSocialProofHighlight } from '@/components/landing/social-proof/use-social-proof-highlight';
 
 export function SocialProofSection(): React.JSX.Element {
-  const activeCardId = useSocialProofHighlight();
-
   return (
     <section
       id='social-proof'
@@ -26,12 +21,12 @@ export function SocialProofSection(): React.JSX.Element {
           </div>
         </div>
 
-        <SocialProofStats activeCardId={activeCardId} />
+        <SocialProofStats activeCardId={null} />
 
         <div className='grid gap-4 xl:grid-cols-[0.9fr_minmax(0,1.1fr)] xl:gap-5'>
-          <SocialProofLogos activeCardId={activeCardId} />
+          <SocialProofLogos activeCardId={null} />
 
-          <SocialProofTestimonials activeCardId={activeCardId} />
+          <SocialProofTestimonials activeCardId={null} />
         </div>
       </div>
     </section>
