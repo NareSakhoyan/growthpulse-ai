@@ -49,6 +49,12 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className='min-h-full flex flex-col' suppressHydrationWarning>
+        <a
+          href='#main-content'
+          className='sr-only absolute left-4 top-4 z-[100] rounded-md bg-background px-3 py-2 text-sm font-medium text-foreground shadow-md ring-1 ring-border focus:not-sr-only focus:outline-hidden focus:ring-2 focus:ring-ring'
+        >
+          Skip to main content
+        </a>
         <PostHogProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </PostHogProvider>

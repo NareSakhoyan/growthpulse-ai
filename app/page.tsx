@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { AppSidebar } from '@/components/app-sidebar';
 import { FeaturesSection } from '@/components/landing/features-section';
 import { GetAuditSection } from '@/components/landing/get-audit-section';
@@ -7,6 +9,18 @@ import { SocialProofSection } from '@/components/landing/social-proof-section';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
+export const metadata: Metadata = {
+  title: 'AI Marketing Audit for SaaS Teams',
+  description:
+    'GrowthPulse AI audits your funnel, messaging, and conversion points, then turns the findings into prioritized next actions your team can ship quickly.',
+  openGraph: {
+    title: 'AI Marketing Audit for SaaS Teams | GrowthPulse AI',
+    description:
+      'Audit your funnel, messaging, and conversion flow with clear recommendations your team can act on quickly.',
+    url: 'https://growthpulse-ai.vercel.app/',
+  },
+};
+
 export default function Home() {
   return (
     <SidebarProvider className='flex min-h-svh flex-col'>
@@ -14,15 +28,13 @@ export default function Home() {
       <div className='flex flex-1'>
         <AppSidebar />
         <SidebarInset>
-          <div className='flex flex-1 flex-col'>
-            <div className='flex w-full flex-col'>
-              <OverviewSection />
-              <FeaturesSection />
-              <PricingSection />
-              <SocialProofSection />
-              <GetAuditSection />
-            </div>
-          </div>
+          <main id='main-content' className='flex flex-1 flex-col'>
+            <OverviewSection />
+            <FeaturesSection />
+            <PricingSection />
+            <SocialProofSection />
+            <GetAuditSection />
+          </main>
         </SidebarInset>
       </div>
     </SidebarProvider>
