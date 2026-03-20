@@ -1,44 +1,6 @@
+import { ActionPlanList } from '@/components/landing/action-plan-list';
 import { GrowthScoreCard } from '@/components/landing/growth-score-card';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-const actionPlan = [
-  {
-    title: 'Improve landing conversion',
-    meta: 'High impact, Low effort',
-    accentClassName: 'bg-emerald-500/15 text-emerald-300',
-  },
-  {
-    title: 'Fix email drop-off',
-    meta: 'Medium impact',
-    accentClassName: 'bg-sky-500/15 text-sky-300',
-  },
-  {
-    title: 'Boost trial activation',
-    meta: 'High impact',
-    accentClassName: 'bg-violet-500/15 text-violet-300',
-  },
-  {
-    title: 'Refresh SEO pages',
-    meta: 'Medium impact, Low effort',
-    accentClassName: 'bg-amber-500/15 text-amber-300',
-  },
-  {
-    title: 'Clarify pricing CTA',
-    meta: 'Low effort',
-    accentClassName: 'bg-cyan-500/15 text-cyan-300',
-  },
-  {
-    title: 'Reduce paid CAC waste',
-    meta: 'High impact',
-    accentClassName: 'bg-rose-500/15 text-rose-300',
-  },
-  {
-    title: 'Lift referral prompts',
-    meta: 'Medium impact',
-    accentClassName: 'bg-fuchsia-500/15 text-fuchsia-300',
-  },
-] as const;
 
 export function OverviewDashboardPreview(): React.JSX.Element {
   return (
@@ -72,31 +34,9 @@ export function OverviewDashboardPreview(): React.JSX.Element {
         </div>
       </CardHeader>
 
-      <CardContent className='grid gap-4 p-5 sm:p-6 lg:grid-cols-[1.2fr_0.8fr]'>
+      <CardContent className='grid items-start gap-4 p-5 sm:p-6 lg:grid-cols-[1.2fr_0.8fr]'>
         <GrowthScoreCard />
-
-        <Card className='border-white/10 bg-white/5 text-white shadow-none'>
-          <CardHeader className='space-y-3'>
-            <CardTitle className='text-base'>Action Plan</CardTitle>
-            <div className='space-y-3 text-sm text-slate-300'>
-              {actionPlan.map((item) => (
-                <div
-                  key={item.title}
-                  className='space-y-2 rounded-lg border border-white/10 bg-white/5 p-3'
-                >
-                  <div className='flex items-start justify-between gap-3'>
-                    <p className='font-medium text-white'>{item.title}</p>
-                    <Badge
-                      className={`shrink-0 whitespace-nowrap border-transparent ${item.accentClassName}`}
-                    >
-                      {item.meta}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardHeader>
-        </Card>
+        <ActionPlanList />
       </CardContent>
     </Card>
   );

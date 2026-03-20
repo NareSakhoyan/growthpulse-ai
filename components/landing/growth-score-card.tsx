@@ -44,7 +44,7 @@ export function GrowthScoreCard(): React.JSX.Element {
   );
 
   return (
-    <Card className='border-white/10 bg-white/5 text-white shadow-none'>
+    <Card className='h-fit self-start border-white/10 bg-white/5 text-white shadow-none'>
       <CardHeader className='space-y-4'>
         <div className='flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'>
           <div className='space-y-2'>
@@ -65,8 +65,8 @@ export function GrowthScoreCard(): React.JSX.Element {
         </div>
       </CardHeader>
 
-      <CardContent className='grid gap-5 lg:grid-cols-[1.05fr_0.95fr]'>
-        <div className='rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_50%_40%,rgba(56,189,248,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 sm:p-5'>
+      <CardContent className='grid items-start gap-5 lg:grid-cols-[1.05fr_0.95fr]'>
+        <div className='w-fit self-start rounded-3xl border border-white/10 bg-[radial-gradient(circle_at_50%_40%,rgba(56,189,248,0.12),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 sm:p-5 lg:justify-self-center'>
           <div className='mb-3 flex items-center justify-between'>
             <p className='text-xs font-medium tracking-[0.18em] text-slate-400 uppercase'>
               Spider View
@@ -75,7 +75,7 @@ export function GrowthScoreCard(): React.JSX.Element {
           </div>
           <svg
             viewBox={`0 0 ${RADAR_SIZE} ${RADAR_SIZE}`}
-            className='mx-auto block w-full max-w-[24rem]'
+            className='block w-full max-w-[24rem]'
             aria-label='7-dimension growth score spider chart'
             role='img'
           >
