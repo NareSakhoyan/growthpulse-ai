@@ -5,6 +5,7 @@ import { FeaturesSection } from '@/components/landing/features-section';
 import { GetAuditSection } from '@/components/landing/get-audit-section';
 import { OverviewSection } from '@/components/landing/overview-section';
 import { PricingSection } from '@/components/landing/pricing-section';
+import { ReportPreview } from '@/components/landing/report-preview';
 import { SocialProofSection } from '@/components/landing/social-proof-section';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -25,10 +26,11 @@ export default function Home(): React.JSX.Element {
   return (
     <>
       <SiteHeader />
-      <div className='mx-auto flex w-full max-w-[1600px] flex-1 gap-8 px-4 sm:px-6 lg:px-8'>
+      <div className='flex w-full flex-1 gap-8 px-4 lg:px-8'>
         <AppSidebar />
         <main id='main-content' className='min-w-0 flex-1'>
           <OverviewSection />
+          <ReportPreview />
           <FeaturesSection />
           <PricingSection />
           <SocialProofSection />

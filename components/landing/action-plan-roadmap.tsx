@@ -115,7 +115,7 @@ const highestPriorityScore = Math.max(
 export function ActionPlanRoadmap(): React.JSX.Element {
   return (
     <Card className='border-transparent bg-transparent text-white shadow-none'>
-      <CardHeader className='space-y-4 px-0 pt-0 pb-5'>
+      <CardHeader className='space-y-4 px-2 pt-0 pb-5 sm:px-0'>
         <div className='flex flex-wrap items-start justify-between gap-3'>
           <div className='space-y-2'>
             <div className='flex items-center gap-2'>
@@ -132,7 +132,7 @@ export function ActionPlanRoadmap(): React.JSX.Element {
         </div>
       </CardHeader>
 
-      <CardContent className='space-y-4 px-0 pb-0'>
+      <CardContent className='space-y-4 px-2 pb-0 sm:px-0'>
         {sortedRoadmapPhases.map((phase, index) => (
           <section
             key={phase.monthLabel}

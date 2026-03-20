@@ -10,7 +10,7 @@ const navigationItems = [
 export function SiteHeader(): React.JSX.Element {
   return (
     <header className='sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-xl'>
-      <div className='mx-auto flex h-14 w-full max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8'>
+      <div className='flex h-14 w-full items-center justify-between gap-4 px-4 lg:px-8'>
         <a href='#overview' className='min-w-0'>
           <BrandLockup
             className='gap-2.5'

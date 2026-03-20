@@ -10,7 +10,7 @@ export function GetAuditSection(): React.JSX.Element {
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='space-y-8'>
           <div className='space-y-4 text-center'>
-            <div className='mx-auto max-w-2xl space-y-3'>
+            <div className='mx-auto max-w-2xl space-y-3 px-1 sm:px-0'>
               <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>Get your audit</h2>
               <p className='text-base leading-7 text-muted-foreground'>
                 Send the basics. We&apos;ll tell you if there&apos;s real upside to chase.

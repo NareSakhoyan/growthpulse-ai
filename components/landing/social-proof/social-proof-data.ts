@@ -18,7 +18,7 @@ export const stats = [
       '-translate-y-1.5 scale-[1.015] border-sky-300/90 bg-sky-50/95 shadow-[0_28px_70px_-34px_rgba(14,165,233,0.52)] ring-1 ring-sky-200/70',
     overlayClass:
       'bg-[radial-gradient(circle_at_12%_12%,rgba(125,211,252,0.28),transparent_42%),linear-gradient(140deg,rgba(240,249,255,0.72),rgba(255,255,255,0))] opacity-100',
-    valueClass: 'text-sky-950',
+    valueClass: 'text-slate-950',
   },
   {
     id: 'roi',
@@ -30,7 +30,7 @@ export const stats = [
       '-translate-y-1.5 scale-[1.015] border-violet-300/90 bg-violet-50/95 shadow-[0_28px_70px_-34px_rgba(139,92,246,0.5)] ring-1 ring-violet-200/70',
     overlayClass:
       'bg-[radial-gradient(circle_at_14%_16%,rgba(196,181,253,0.3),transparent_42%),linear-gradient(140deg,rgba(245,243,255,0.74),rgba(255,255,255,0))] opacity-100',
-    valueClass: 'text-violet-950',
+    valueClass: 'text-slate-950',
   },
   {
     id: 'rating',
@@ -42,7 +42,7 @@ export const stats = [
       '-translate-y-1.5 scale-[1.015] border-amber-300/90 bg-amber-50/95 shadow-[0_28px_70px_-34px_rgba(245,158,11,0.48)] ring-1 ring-amber-200/70',
     overlayClass:
       'bg-[radial-gradient(circle_at_14%_18%,rgba(253,230,138,0.34),transparent_42%),linear-gradient(140deg,rgba(255,251,235,0.76),rgba(255,255,255,0))] opacity-100',
-    valueClass: 'text-amber-950',
+    valueClass: 'text-slate-950',
   },
 ] as const;
 

@@ -57,5 +57,9 @@ export function PricingCardsLoader(): React.JSX.Element {
     idleTimeoutMs: 650,
   });
 
-  return <div ref={ref}>{isActive ? <PricingCardsClient /> : <PricingCardsPlaceholder />}</div>;
+  return (
+    <div ref={ref} className='px-1 sm:px-0'>
+      {isActive ? <PricingCardsClient /> : <PricingCardsPlaceholder />}
+    </div>
+  );
 }

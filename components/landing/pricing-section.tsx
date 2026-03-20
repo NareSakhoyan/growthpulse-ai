@@ -8,7 +8,7 @@ export function PricingSection(): React.JSX.Element {
     >
       <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-10 lg:px-8'>
         <div className='space-y-4'>
-          <div className='max-w-3xl space-y-3'>
+          <div className='max-w-3xl space-y-3 px-2 sm:px-0'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               Pick the level of scrutiny your funnel actually needs.
             </h2>

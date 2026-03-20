@@ -14,13 +14,13 @@ export function SocialProofStats({ activeCardId }: SocialProofStatsProps): React
         <Card
           key={stat.label}
           className={cn(
-            'relative isolate overflow-hidden border-white/65 bg-white/45 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.2),0_8px_18px_-16px_rgba(15,23,42,0.12)] backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none transform-gpu will-change-transform',
+            'relative isolate overflow-hidden border-white/65 bg-white/45 text-slate-950 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.2),0_8px_18px_-16px_rgba(15,23,42,0.12)] backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none transform-gpu will-change-transform',
             activeCardId === stat.id && stat.activeClass,
           )}
         >
           <div
             className={cn(
-              'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out',
+              'pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-700 ease-out',
               activeCardId === stat.id && stat.overlayClass,
             )}
           />
@@ -32,14 +32,16 @@ export function SocialProofStats({ activeCardId }: SocialProofStatsProps): React
               )}
             />
             <div className='relative z-10 flex items-center justify-between gap-3'>
-              <p className='text-xs uppercase tracking-[0.18em] text-muted-foreground'>
+              <p className='text-xs font-semibold tracking-[0.18em] text-slate-700 uppercase'>
                 {stat.label}
               </p>
             </div>
-            <CardTitle className={cn('text-3xl tracking-tight', stat.valueClass)}>
+            <CardTitle className={cn('relative z-10 text-3xl tracking-tight', stat.valueClass)}>
               {stat.value}
             </CardTitle>
-            <CardDescription className='text-sm leading-6'>{stat.description}</CardDescription>
+            <CardDescription className='relative z-10 text-sm leading-6 text-slate-700'>
+              {stat.description}
+            </CardDescription>
           </CardHeader>
         </Card>
       ))}

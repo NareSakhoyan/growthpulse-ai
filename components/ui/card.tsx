@@ -65,5 +65,5 @@ export function CardContent({
   className,
   ...props
 }: React.ComponentProps<'div'>): React.JSX.Element {
-  return <div className={cn('px-6 pb-6', className)} {...props} />;
+  return <div className={cn('px-6 pb-6 sm:px-7', className)} {...props} />;
 }
