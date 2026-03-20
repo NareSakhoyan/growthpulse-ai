@@ -17,10 +17,10 @@ export function SocialProofLogos({ activeCardId }: SocialProofLogosProps): React
       )}
     >
       <CardHeader className='relative z-10 space-y-3'>
-        <CardTitle className='text-lg'>Trusted across modern software teams</CardTitle>
+        <CardTitle className='text-lg'>Teams using the audit across modern growth stacks</CardTitle>
         <CardDescription className='text-sm leading-6'>
-          Common customer profiles include product-led SaaS, fintech growth teams, AI products, and
-          developer-focused platforms.
+          Examples include SaaS, fintech, and AI teams using the audit to tighten acquisition and
+          conversion performance.
         </CardDescription>
       </CardHeader>
       <CardContent className='relative z-10 grid gap-3 sm:grid-cols-2'>

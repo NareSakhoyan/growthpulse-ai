@@ -12,7 +12,7 @@ export function SocialProofTestimonials({
   activeCardId,
 }: SocialProofTestimonialsProps): React.JSX.Element {
   return (
-    <div className='grid gap-4 lg:grid-cols-2'>
+    <div className='grid gap-4'>
       {testimonials.map((testimonial) => (
         <Card
           key={testimonial.id}

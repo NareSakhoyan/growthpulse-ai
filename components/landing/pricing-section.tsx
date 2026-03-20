@@ -12,38 +12,47 @@ import { CheckIcon, SparklesIcon } from 'lucide-react';
 const plans = [
   {
     name: 'Starter',
-    price: '$149',
-    cadence: '/audit',
-    description: 'A focused one-time audit for founders who need fast clarity on what to fix next.',
-    cta: 'Start audit',
-    highlights: ['Core funnel review', 'Headline and CTA analysis', '48-hour delivery'],
+    price: '$499',
+    cadence: '/mo',
+    description: 'A lightweight operating layer for smaller teams that need monthly visibility.',
+    cta: 'Choose Starter',
+    details: [
+      { label: 'Integrations', value: 'Up to 5' },
+      { label: 'Reports', value: 'Monthly diagnostic' },
+      { label: 'Action Plans', value: 'Quarterly' },
+      { label: 'Users', value: '2 seats' },
+      { label: 'Support', value: 'Email' },
+    ],
     featured: false,
   },
   {
     name: 'Growth',
-    price: '$349',
-    cadence: '/month',
-    description:
-      'A recurring audit workflow for teams that want clear priorities, testing ideas, and tighter iteration loops.',
+    price: '$1,299',
+    cadence: '/mo',
+    description: 'The core plan for teams that want tighter review cycles and faster iteration.',
     cta: 'Choose Growth',
-    highlights: [
-      'Monthly full-funnel audit',
-      'Prioritized action roadmap',
-      'Async strategist support',
+    details: [
+      { label: 'Integrations', value: 'Up to 15' },
+      { label: 'Reports', value: 'Weekly diagnostic' },
+      { label: 'Action Plans', value: 'Monthly' },
+      { label: 'Users', value: '5 seats' },
+      { label: 'Support', value: 'Priority email + chat' },
     ],
     featured: true,
   },
   {
     name: 'Scale',
-    price: '$899',
-    cadence: '/month',
+    price: '$2,999',
+    cadence: '/mo',
     description:
-      'A higher-touch operating layer for teams managing multiple campaigns, landing pages, and conversion paths.',
+      'A higher-touch setup for larger teams running more surface area and more stakeholders.',
     cta: 'Talk to sales',
-    highlights: [
-      'Multi-page audit coverage',
-      'Channel-by-channel diagnostics',
-      'Leadership-ready reporting',
+    details: [
+      { label: 'Integrations', value: 'Unlimited' },
+      { label: 'Reports', value: 'Daily diagnostic + alerts' },
+      { label: 'Action Plans', value: 'Monthly + live dashboard' },
+      { label: 'Users', value: 'Unlimited seats' },
+      { label: 'Support', value: 'Dedicated success manager' },
     ],
     featured: false,
   },
@@ -137,13 +146,18 @@ export function PricingSection(): React.JSX.Element {
                             </div>
 
                             <div className='space-y-3'>
-                              {plan.highlights.map((highlight) => (
+                              {plan.details.map((detail) => (
                                 <div
-                                  key={highlight}
-                                  className='flex items-start gap-2 text-sm leading-6 text-slate-100/90'
+                                  key={detail.label}
+                                  className='flex items-start justify-between gap-4 border-b border-white/10 pb-3 text-sm leading-6 text-slate-100/90 last:border-b-0 last:pb-0'
                                 >
-                                  <CheckIcon className='mt-1 size-4 shrink-0 text-cyan-300' />
-                                  <span>{highlight}</span>
+                                  <div className='flex items-start gap-2'>
+                                    <CheckIcon className='mt-1 size-4 shrink-0 text-cyan-300' />
+                                    <span className='text-slate-300'>{detail.label}</span>
+                                  </div>
+                                  <span className='max-w-[60%] text-right text-slate-50'>
+                                    {detail.value}
+                                  </span>
                                 </div>
                               ))}
                             </div>
@@ -195,16 +209,30 @@ export function PricingSection(): React.JSX.Element {
                           </div>
 
                           <div className='space-y-3'>
-                            {plan.highlights.map((highlight) => (
+                            {plan.details.map((detail) => (
                               <div
-                                key={highlight}
+                                key={detail.label}
                                 className={cn(
-                                  'flex items-start gap-2 text-sm leading-6',
-                                  isFeatured ? 'text-slate-700' : 'text-slate-100/90',
+                                  'flex items-start justify-between gap-4 border-b pb-3 text-sm leading-6 last:border-b-0 last:pb-0',
+                                  isFeatured ? 'border-slate-200' : 'border-white/10',
                                 )}
                               >
-                                <CheckIcon className='mt-1 size-4 shrink-0 text-cyan-300' />
-                                <span>{highlight}</span>
+                                <div className='flex items-start gap-2'>
+                                  <CheckIcon className='mt-1 size-4 shrink-0 text-cyan-300' />
+                                  <span
+                                    className={cn(isFeatured ? 'text-slate-600' : 'text-slate-300')}
+                                  >
+                                    {detail.label}
+                                  </span>
+                                </div>
+                                <span
+                                  className={cn(
+                                    'max-w-[60%] text-right',
+                                    isFeatured ? 'text-slate-900' : 'text-slate-50',
+                                  )}
+                                >
+                                  {detail.value}
+                                </span>
                               </div>
                             ))}
                           </div>

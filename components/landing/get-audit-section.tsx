@@ -10,14 +10,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { createClient, SupabaseClientConfigError } from '@/lib/supabase/client';
 
 type SubmissionState = 'idle' | 'loading' | 'success' | 'error';
@@ -193,24 +198,23 @@ export function GetAuditSection(): React.JSX.Element {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Company size</FormLabel>
-                          <FormControl>
-                            <Select
-                              disabled={submissionState === 'loading'}
-                              {...field}
-                              value={field.value}
-                            >
-                              <option value='' disabled>
-                                Select company size
-                              </option>
-                              <option value='1-10'>1-10 employees</option>
-                              <option value='11-50'>11-50 employees</option>
-                              <option value='51-200'>51-200 employees</option>
-                              <option value='201-plus'>201+ employees</option>
-                            </Select>
-                          </FormControl>
-                          <FormDescription>
-                            We only use this information to scope and respond to your audit request.
-                          </FormDescription>
+                          <Select
+                            disabled={submissionState === 'loading'}
+                            onValueChange={field.onChange}
+                            value={field.value || undefined}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder='Select company size' />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value='1-10'>1-10 employees</SelectItem>
+                              <SelectItem value='11-50'>11-50 employees</SelectItem>
+                              <SelectItem value='51-200'>51-200 employees</SelectItem>
+                              <SelectItem value='201-plus'>201+ employees</SelectItem>
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                         </FormItem>
                       )}

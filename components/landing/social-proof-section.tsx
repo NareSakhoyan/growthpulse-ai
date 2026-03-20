@@ -17,11 +17,11 @@ export function SocialProofSection(): React.JSX.Element {
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              Clear proof that the audit turns into action, not another unused report.
+              Proof that the audit surfaces real opportunities fast.
             </h2>
             <p className='text-base leading-7 text-muted-foreground'>
-              Built to show traction quickly: measurable outcomes, recognizable buyer categories,
-              and feedback from teams using the recommendations in live funnels.
+              Measurable outcomes, recognizable customer profiles, and clear signals that the audit
+              translates into action.
             </p>
           </div>
         </div>
