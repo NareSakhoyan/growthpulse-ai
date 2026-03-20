@@ -6,6 +6,7 @@ import { GetAuditSection } from '@/components/landing/get-audit-section';
 import { OverviewSection } from '@/components/landing/overview-section';
 import { PricingSection } from '@/components/landing/pricing-section';
 import { SocialProofSection } from '@/components/landing/social-proof-section';
+import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
@@ -34,6 +35,7 @@ export default function Home() {
             <PricingSection />
             <SocialProofSection />
             <GetAuditSection />
+            <SiteFooter />
           </main>
         </SidebarInset>
       </div>
