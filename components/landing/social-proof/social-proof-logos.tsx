@@ -16,14 +16,14 @@ export function SocialProofLogos({ activeCardId }: SocialProofLogosProps): React
           'border-indigo-200/80 shadow-[0_20px_50px_-30px_rgba(99,102,241,0.34)]',
       )}
     >
-      <CardHeader className='relative z-10 space-y-3'>
+      <CardHeader className='relative z-10 space-y-3 p-5 sm:p-6'>
         <CardTitle className='text-lg'>Teams using the audit across modern growth stacks</CardTitle>
         <CardDescription className='text-sm leading-6'>
           Examples include SaaS, fintech, and AI teams using the audit to tighten acquisition and
           conversion performance.
         </CardDescription>
       </CardHeader>
-      <CardContent className='relative z-10 grid gap-3 sm:grid-cols-2'>
+      <CardContent className='relative z-10 grid gap-3 p-5 pt-0 sm:p-6 sm:pt-0 md:grid-cols-2'>
         {logos.map((logo) => (
           <div
             key={logo.label}

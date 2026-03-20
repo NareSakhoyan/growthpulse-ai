@@ -126,9 +126,9 @@ export function GetAuditSection(): React.JSX.Element {
   return (
     <section
       id='get-audit'
-      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.18),transparent_20%),radial-gradient(circle_at_84%_18%,rgba(34,197,94,0.14),transparent_20%),linear-gradient(180deg,rgba(239,248,255,0.98),rgba(255,255,255,1))] py-8 sm:py-10'
+      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.18),transparent_20%),radial-gradient(circle_at_84%_18%,rgba(34,197,94,0.14),transparent_20%),linear-gradient(180deg,rgba(239,248,255,0.98),rgba(255,255,255,1))] py-12 sm:py-14 lg:py-16'
     >
-      <div className='px-4 sm:px-6'>
+      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         {submissionState === 'success' ? (
           <div className='mx-auto max-w-2xl py-8 text-center sm:py-12'>
             <h2 className='text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl'>
@@ -156,8 +156,7 @@ export function GetAuditSection(): React.JSX.Element {
               <CardHeader className='space-y-3 p-6 pb-0 sm:p-8 sm:pb-0'>
                 <CardTitle className='text-xl sm:text-2xl'>Request your audit</CardTitle>
                 <CardDescription className='max-w-2xl text-sm leading-6 sm:text-base'>
-                  Send the basics and we&apos;ll store the request, including any UTM source data
-                  tied to this visit.
+                  Share the basics and we&apos;ll follow up with the best next step for your team.
                 </CardDescription>
               </CardHeader>
               <CardContent className='p-6 pt-6 sm:p-8'>
@@ -244,7 +243,7 @@ export function GetAuditSection(): React.JSX.Element {
                       </p>
                     ) : null}
 
-                    <div className='flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between'>
+                    <div className='flex flex-col gap-4 pt-1 sm:flex-row sm:items-center sm:justify-between'>
                       <p className='max-w-xl text-sm leading-6 text-muted-foreground'>
                         We only use this information to respond to your audit request. No spam, no
                         list sales, and no unnecessary follow-ups.

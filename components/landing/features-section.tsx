@@ -46,17 +46,17 @@ export function FeaturesSection(): React.JSX.Element {
   return (
     <section
       id='features'
-      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_88%_18%,rgba(251,191,36,0.18),transparent_18%),radial-gradient(circle_at_12%_82%,rgba(248,113,113,0.12),transparent_18%),linear-gradient(180deg,rgba(255,252,245,0.98),rgba(248,250,252,0.94))] py-8 sm:py-10'
+      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_88%_18%,rgba(251,191,36,0.18),transparent_18%),radial-gradient(circle_at_12%_82%,rgba(248,113,113,0.12),transparent_18%),linear-gradient(180deg,rgba(255,252,245,0.98),rgba(248,250,252,0.94))] py-12 sm:py-14 lg:py-16'
     >
-      <div className='space-y-8 px-4 sm:px-6'>
+      <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-10 lg:px-8'>
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               Everything needed to audit a SaaS landing page like an operating system.
             </h2>
             <p className='text-base leading-7 text-muted-foreground'>
-              The Features section stays compact inside the sidebar layout while still surfacing the
-              core capabilities that make the audit useful.
+              Get a clear read on messaging, funnel performance, and the next actions that will move
+              conversion the fastest.
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ export function FeaturesSection(): React.JSX.Element {
                 key={feature.title}
                 className='flex h-full flex-col border-border/60 bg-background/80 shadow-none'
               >
-                <CardHeader className='flex h-full flex-col gap-4'>
+                <CardHeader className='flex h-full flex-col gap-4 p-5 sm:p-6'>
                   <div className='flex size-11 items-center justify-center rounded-xl border border-border/60 bg-muted/60'>
                     <Icon className='size-5 text-foreground' />
                   </div>
@@ -84,7 +84,7 @@ export function FeaturesSection(): React.JSX.Element {
             );
           })}
           <Card className='flex h-full flex-col border-dashed border-border/70 bg-[linear-gradient(180deg,rgba(99,102,241,0.08),rgba(255,255,255,0.92))] shadow-none md:col-span-2 xl:col-span-1'>
-            <CardHeader className='flex h-full flex-col justify-between gap-4'>
+            <CardHeader className='flex h-full flex-col justify-between gap-5 p-5 sm:p-6'>
               <div className='space-y-2'>
                 <Badge className='w-fit' variant='outline'>
                   Built for teams

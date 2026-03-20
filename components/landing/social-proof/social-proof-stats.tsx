@@ -18,7 +18,7 @@ export function SocialProofStats({ activeCardId }: SocialProofStatsProps): React
             activeCardId === stat.id && stat.activeClass,
           )}
         >
-          <CardHeader className='relative z-10 space-y-4'>
+          <CardHeader className='relative z-10 space-y-4 p-5 sm:p-6'>
             <stat.icon className='pointer-events-none absolute -right-5 -top-2 z-0 size-28 text-slate-950/[0.07] sm:size-32' />
             <div className='relative z-10 flex items-center justify-between gap-3'>
               <p className='text-xs uppercase tracking-[0.18em] text-muted-foreground'>

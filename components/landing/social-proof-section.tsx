@@ -11,9 +11,9 @@ export function SocialProofSection(): React.JSX.Element {
   return (
     <section
       id='social-proof'
-      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_12%_20%,rgba(251,191,36,0.16),transparent_18%),radial-gradient(circle_at_84%_18%,rgba(244,114,182,0.14),transparent_18%),linear-gradient(180deg,rgba(255,253,247,0.98),rgba(255,255,255,1))] py-8 sm:py-10'
+      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_12%_20%,rgba(251,191,36,0.16),transparent_18%),radial-gradient(circle_at_84%_18%,rgba(244,114,182,0.14),transparent_18%),linear-gradient(180deg,rgba(255,253,247,0.98),rgba(255,255,255,1))] py-12 sm:py-14 lg:py-16'
     >
-      <div className='space-y-8 px-4 sm:px-6'>
+      <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-10 lg:px-8'>
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
@@ -28,7 +28,7 @@ export function SocialProofSection(): React.JSX.Element {
 
         <SocialProofStats activeCardId={activeCardId} />
 
-        <div className='grid gap-4 xl:grid-cols-[0.9fr_minmax(0,1.1fr)]'>
+        <div className='grid gap-4 xl:grid-cols-[0.9fr_minmax(0,1.1fr)] xl:gap-5'>
           <SocialProofLogos activeCardId={activeCardId} />
 
           <SocialProofTestimonials activeCardId={activeCardId} />

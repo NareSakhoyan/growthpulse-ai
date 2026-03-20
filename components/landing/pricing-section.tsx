@@ -65,28 +65,28 @@ export function PricingSection(): React.JSX.Element {
   return (
     <section
       id='pricing'
-      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_14%_20%,rgba(99,102,241,0.30),transparent_24%),radial-gradient(circle_at_88%_16%,rgba(56,189,248,0.22),transparent_20%),linear-gradient(180deg,rgba(15,23,42,0.98),rgba(30,41,59,0.98))] py-8 text-white sm:py-10'
+      className='scroll-mt-24 overflow-hidden bg-[radial-gradient(circle_at_14%_20%,rgba(99,102,241,0.30),transparent_24%),radial-gradient(circle_at_88%_16%,rgba(56,189,248,0.22),transparent_20%),linear-gradient(180deg,rgba(15,23,42,0.98),rgba(30,41,59,0.98))] py-12 text-white sm:py-14 lg:py-16'
     >
-      <div className='space-y-8 px-4 sm:px-6'>
+      <div className='mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-10 lg:px-8'>
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
               Pricing built to fit a founder sprint or a full growth operating rhythm.
             </h2>
             <p className='text-base leading-7 text-slate-300'>
-              The section stays readable inside the sidebar layout with compact cards on smaller
-              widths and a more balanced three-plan comparison once space opens up.
+              Choose the level of audit coverage, reporting cadence, and team support that matches
+              your current stage.
             </p>
           </div>
         </div>
-        <div className='flex flex-col gap-4 xl:flex-row'>
+        <div className='grid gap-4 xl:grid-cols-3'>
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.name;
             const isFeatured = isSelected;
             const showPopularBadge = plan.featured;
 
             return (
-              <div key={plan.name} className='xl:flex-1'>
+              <div key={plan.name}>
                 <CursorTooltip
                   content={isSelected ? 'Selected' : 'Select'}
                   disabled={isSelected}
@@ -129,8 +129,8 @@ export function PricingSection(): React.JSX.Element {
                           darkMode
                           style={{ backgroundColor: '#020617' }}
                         >
-                          <CardHeader className='relative z-10 flex h-full flex-col gap-5'>
-                            <div className='space-y-4'>
+                          <CardHeader className='relative z-10 flex h-full flex-col gap-6 p-5 sm:p-6'>
+                            <div className='space-y-5'>
                               <div className='flex items-start justify-between gap-3'>
                                 <div className='space-y-1'>
                                   <CardTitle className='text-xl'>{plan.name}</CardTitle>
@@ -180,8 +180,8 @@ export function PricingSection(): React.JSX.Element {
                           </CardHeader>
                         </AnimatedGrainyBg>
                       ) : (
-                        <CardHeader className='relative z-10 flex h-full flex-col gap-5'>
-                          <div className='space-y-4'>
+                        <CardHeader className='relative z-10 flex h-full flex-col gap-6 p-5 sm:p-6'>
+                          <div className='space-y-5'>
                             <div className='flex items-start justify-between gap-3'>
                               <div className='space-y-1'>
                                 <CardTitle className='text-xl'>{plan.name}</CardTitle>

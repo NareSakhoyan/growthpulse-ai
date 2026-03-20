@@ -5,7 +5,7 @@ export function SiteFooter(): React.JSX.Element {
   return (
     <footer className='bg-background/95'>
       <Separator />
-      <div className='flex flex-col gap-3 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6'>
+      <div className='mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8'>
         <nav aria-label='Footer' className='flex flex-wrap items-center gap-1'>
           <Button asChild variant='ghost' size='sm' className='text-muted-foreground'>
             <a href='#features'>Features</a>

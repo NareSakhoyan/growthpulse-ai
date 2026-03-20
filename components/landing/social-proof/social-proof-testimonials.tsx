@@ -21,7 +21,7 @@ export function SocialProofTestimonials({
             activeCardId === testimonial.id && testimonial.activeClass,
           )}
         >
-          <CardHeader className='space-y-5'>
+          <CardHeader className='space-y-5 p-5 sm:p-6'>
             <QuoteIcon className='pointer-events-none absolute -right-4 top-3 z-0 size-24 text-slate-950/[0.06] sm:size-28' />
             <div className='space-y-2'>
               <div className='space-y-2'>
@@ -33,7 +33,7 @@ export function SocialProofTestimonials({
                 </p>
               </div>
             </div>
-            <div className='flex items-end justify-between gap-4 border-t border-white/45 pt-4'>
+            <div className='flex flex-col gap-3 border-t border-white/45 pt-4 sm:flex-row sm:items-end sm:justify-between'>
               <div className='space-y-1'>
                 <CardTitle className='text-base'>{testimonial.name}</CardTitle>
                 <CardDescription className='text-sm'>{testimonial.company}</CardDescription>
