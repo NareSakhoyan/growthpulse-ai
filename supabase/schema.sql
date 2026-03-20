@@ -8,6 +8,8 @@ create table if not exists public.leads (
   utm_source text,
   utm_medium text,
   utm_campaign text,
+  utm_term text,
+  utm_content text,
   created_at timestamptz not null default timezone('utc', now())
 );
 
