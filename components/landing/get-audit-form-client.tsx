@@ -5,7 +5,6 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -14,6 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { GlassCtaButton } from '@/components/ui/glass-cta-button';
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -225,14 +225,14 @@ export function GetAuditFormClient(): React.JSX.Element {
             We only use this information to respond to your audit request. No spam, no list sales,
             and no unnecessary follow-ups.
           </p>
-          <Button
+          <GlassCtaButton
             type='submit'
             size='lg'
-            className='w-full sm:w-auto'
+            className='w-full justify-center border-0 sm:w-auto'
             disabled={submissionState === 'loading'}
           >
             {submissionState === 'loading' ? 'Sending...' : 'Request audit'}
-          </Button>
+          </GlassCtaButton>
         </div>
       </form>
     </Form>

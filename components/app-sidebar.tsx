@@ -3,10 +3,10 @@ import {
   BarChart3Icon,
   RocketIcon,
   SparklesIcon,
-  TerminalIcon,
   TerminalSquareIcon,
 } from 'lucide-react';
 
+import { BrandLockup } from '@/components/brand-lockup';
 import { Button } from '@/components/ui/button';
 
 const data = {
@@ -54,16 +54,10 @@ const data = {
 export function AppSidebar(): React.JSX.Element {
   return (
     <aside className='sticky top-20 hidden w-64 shrink-0 self-start lg:block'>
-      <div className='overflow-hidden rounded-[28px] border border-border/70 bg-background/80 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.18)] backdrop-blur-sm'>
+      <div className='overflow-hidden rounded-[28px] border border-border/70 bg-background/80 backdrop-blur-sm'>
         <div className='border-b border-border/60 p-4'>
           <a href='#overview' className='flex items-center gap-3'>
-            <div className='flex size-10 items-center justify-center rounded-2xl bg-slate-950 text-white'>
-              <TerminalIcon className='size-4' />
-            </div>
-            <div className='min-w-0'>
-              <p className='truncate text-sm font-semibold tracking-tight'>GrowthPulse AI</p>
-              <p className='truncate text-xs text-muted-foreground'>Audit-first landing page</p>
-            </div>
+            <BrandLockup />
           </a>
         </div>
 

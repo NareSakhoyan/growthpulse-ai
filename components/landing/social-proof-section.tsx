@@ -12,11 +12,10 @@ export function SocialProofSection(): React.JSX.Element {
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              Proof that the audit surfaces real opportunities fast.
+              Not vanity proof. Real teams, real signals, real upside.
             </h2>
             <p className='text-base leading-7 text-muted-foreground'>
-              Measurable outcomes, recognizable customer profiles, and clear signals that the audit
-              translates into action.
+              The audit helps teams spot conversion drag early and act before it gets expensive.
             </p>
           </div>
         </div>

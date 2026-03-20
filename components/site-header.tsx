@@ -1,3 +1,4 @@
+import { BrandLockup } from '@/components/brand-lockup';
 import { Button } from '@/components/ui/button';
 import { BadgeDollarSignIcon, RocketIcon, SparklesIcon } from 'lucide-react';
 
@@ -11,10 +12,11 @@ export function SiteHeader(): React.JSX.Element {
     <header className='sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-xl'>
       <div className='mx-auto flex h-14 w-full max-w-[1600px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8'>
         <a href='#overview' className='min-w-0'>
-          <p className='text-sm font-semibold tracking-tight'>GrowthPulse AI</p>
-          <p className='hidden text-xs text-muted-foreground sm:block'>
-            Audit-first SaaS landing page
-          </p>
+          <BrandLockup
+            className='gap-2.5'
+            markClassName='size-9'
+            subtitleClassName='hidden sm:block'
+          />
         </a>
 
         <nav aria-label='Primary' className='hidden items-center gap-1 md:flex'>

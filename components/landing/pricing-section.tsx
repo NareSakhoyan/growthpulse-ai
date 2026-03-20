@@ -10,11 +10,10 @@ export function PricingSection(): React.JSX.Element {
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              Pricing built to fit a founder sprint or a full growth operating rhythm.
+              Pick the level of scrutiny your funnel actually needs.
             </h2>
             <p className='text-base leading-7 text-slate-300'>
-              Choose the level of audit coverage, reporting cadence, and team support that matches
-              your current stage.
+              From a fast diagnostic to a full operating rhythm, choose how deep you want to go.
             </p>
           </div>
         </div>

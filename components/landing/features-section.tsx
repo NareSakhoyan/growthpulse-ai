@@ -52,11 +52,11 @@ export function FeaturesSection(): React.JSX.Element {
         <div className='space-y-4'>
           <div className='max-w-3xl space-y-3'>
             <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>
-              Everything needed to audit a SaaS landing page like an operating system.
+              Everything you need to find what&apos;s dragging conversion.
             </h2>
             <p className='text-base leading-7 text-muted-foreground'>
-              Get a clear read on messaging, funnel performance, and the next actions that will move
-              conversion the fastest.
+              Spot weak messaging, hidden drop-off points, and the fixes most likely to move
+              pipeline.
             </p>
           </div>
         </div>
@@ -90,11 +90,11 @@ export function FeaturesSection(): React.JSX.Element {
                   Built for teams
                 </Badge>
                 <CardTitle className='text-lg'>
-                  From insight to rollout, without a messy handoff.
+                  No handoff theater. Just a diagnosis your team can act on.
                 </CardTitle>
                 <CardDescription className='text-sm leading-6'>
-                  Share one audit view with founders, growth, and product so everyone is working
-                  from the same diagnosis.
+                  Put founders, growth, and product on the same page before weak assumptions turn
+                  into expensive experiments.
                 </CardDescription>
               </div>
               <GlassCtaButton asChild className='w-fit' tone='soft'>

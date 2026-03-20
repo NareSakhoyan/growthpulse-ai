@@ -13,7 +13,7 @@ export function GetAuditSection(): React.JSX.Element {
             <div className='mx-auto max-w-2xl space-y-3'>
               <h2 className='text-3xl font-semibold tracking-tight sm:text-4xl'>Get your audit</h2>
               <p className='text-base leading-7 text-muted-foreground'>
-                Share a few details and we&apos;ll follow up with the right next step for your team.
+                Send the basics. We&apos;ll tell you if there&apos;s real upside to chase.
               </p>
             </div>
           </div>
@@ -21,7 +21,8 @@ export function GetAuditSection(): React.JSX.Element {
             <CardHeader className='space-y-3 p-6 pb-0 sm:p-8 sm:pb-0'>
               <CardTitle className='text-xl sm:text-2xl'>Request your audit</CardTitle>
               <CardDescription className='max-w-2xl text-sm leading-6 sm:text-base'>
-                Share the basics and we&apos;ll follow up with the best next step for your team.
+                No bloated sales process. Just a quick read on whether your funnel has meaningful
+                room to improve.
               </CardDescription>
             </CardHeader>
             <CardContent className='p-6 pt-6 sm:p-8'>

@@ -7,11 +7,11 @@ export function OverviewHeroContent(): React.JSX.Element {
       <div className='max-w-3xl space-y-5'>
         <div className='space-y-4'>
           <h1 className='max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl xl:text-6xl'>
-            Turn your marketing stack into a clear revenue dashboard.
+            See where your funnel is leaking revenue.
           </h1>
           <p className='max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg'>
-            GrowthPulse AI audits your funnel, messaging, and conversion points, then turns the
-            findings into a prioritized action plan your team can ship quickly.
+            GrowthPulse AI audits your messaging, funnel, and conversion flow so you can see
+            what&apos;s underperforming, what it&apos;s costing you, and what to fix first.
           </p>
         </div>
       </div>
