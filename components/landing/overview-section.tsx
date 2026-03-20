@@ -1,11 +1,14 @@
 'use client';
 
+import { useHeroVariant } from '@/components/landing/use-hero-variant';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { GlassCtaButton } from '@/components/ui/glass-cta-button';
 import { analyticsEvents, captureEvent } from '@/lib/posthog';
 
 export function OverviewSection(): React.JSX.Element {
+  const { variant: heroVariant, copy: activeHeroCopy } = useHeroVariant();
+
   return (
     <section
       id='overview'
@@ -16,11 +19,10 @@ export function OverviewSection(): React.JSX.Element {
           <div className='space-y-4'>
             <div className='space-y-3'>
               <h1 className='max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl xl:text-6xl'>
-                Turn your marketing stack into a clear revenue dashboard.
+                {activeHeroCopy.headline}
               </h1>
               <p className='max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg'>
-                GrowthPulse AI audits your funnel, messaging, and conversion points, then turns the
-                findings into a prioritized action plan your team can ship quickly.
+                {activeHeroCopy.description}
               </p>
             </div>
           </div>
@@ -33,6 +35,7 @@ export function OverviewSection(): React.JSX.Element {
                   captureEvent(analyticsEvents.ctaClicked, {
                     cta_id: 'hero_get_audit',
                     cta_label: 'Get your audit',
+                    hero_variant: heroVariant,
                     section: 'overview',
                   })
                 }
@@ -47,6 +50,7 @@ export function OverviewSection(): React.JSX.Element {
                   captureEvent(analyticsEvents.ctaClicked, {
                     cta_id: 'hero_see_how_it_works',
                     cta_label: 'See how it works',
+                    hero_variant: heroVariant,
                     section: 'overview',
                   })
                 }
