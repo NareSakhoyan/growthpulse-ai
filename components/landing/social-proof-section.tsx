@@ -1,6 +1,4 @@
-import { SocialProofLogos } from '@/components/landing/social-proof/social-proof-logos';
-import { SocialProofStats } from '@/components/landing/social-proof/social-proof-stats';
-import { SocialProofTestimonials } from '@/components/landing/social-proof/social-proof-testimonials';
+import { SocialProofAnimatedContent } from '@/components/landing/social-proof-animated-content';
 
 export function SocialProofSection(): React.JSX.Element {
   return (
@@ -19,14 +17,7 @@ export function SocialProofSection(): React.JSX.Element {
             </p>
           </div>
         </div>
-
-        <SocialProofStats activeCardId={null} />
-
-        <div className='grid gap-4 xl:grid-cols-[0.9fr_minmax(0,1.1fr)] xl:gap-5'>
-          <SocialProofLogos activeCardId={null} />
-
-          <SocialProofTestimonials activeCardId={null} />
-        </div>
+        <SocialProofAnimatedContent />
       </div>
     </section>
   );

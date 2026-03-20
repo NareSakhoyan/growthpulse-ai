@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { socialProofSequenceIds } from './social-proof-data';
 
-const HIGHLIGHT_INTERVAL_MS = 4500;
-const INITIAL_HIGHLIGHT_DELAY_MS = 600;
+const HIGHLIGHT_INTERVAL_MS = 2200;
+const INITIAL_HIGHLIGHT_DELAY_MS = 180;
 
 function shuffleItems<T>(items: readonly T[]): T[] {
   const shuffled = [...items];

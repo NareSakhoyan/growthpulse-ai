@@ -17,10 +17,16 @@ export function SocialProofTestimonials({
         <Card
           key={testimonial.id}
           className={cn(
-            'relative isolate overflow-hidden border-white/65 bg-white/45 shadow-[0_18px_42px_-30px_rgba(15,23,42,0.2),0_8px_18px_-16px_rgba(15,23,42,0.1)] backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+            'relative isolate overflow-hidden border-white/65 bg-white/45 shadow-[0_18px_42px_-30px_rgba(15,23,42,0.2),0_8px_18px_-16px_rgba(15,23,42,0.1)] backdrop-blur-md transition-[background-color,border-color,box-shadow,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none transform-gpu will-change-transform',
             activeCardId === testimonial.id && testimonial.activeClass,
           )}
         >
+          <div
+            className={cn(
+              'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out',
+              activeCardId === testimonial.id && testimonial.overlayClass,
+            )}
+          />
           <CardHeader className='space-y-5 p-5 sm:p-6'>
             <QuoteIcon className='pointer-events-none absolute -right-4 top-3 z-0 size-24 text-slate-950/[0.06] sm:size-28' />
             <div className='space-y-2'>
