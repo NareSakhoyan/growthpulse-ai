@@ -21,12 +21,6 @@ export function SocialProofTestimonials({
             activeCardId === testimonial.id && testimonial.activeClass,
           )}
         >
-          <div
-            className={cn(
-              'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out',
-              activeCardId === testimonial.id && testimonial.overlayClass,
-            )}
-          />
           <CardHeader className='space-y-5 p-5 sm:p-6'>
             <QuoteIcon className='pointer-events-none absolute -right-4 top-3 z-0 size-24 text-slate-950/[0.06] sm:size-28' />
             <div className='space-y-2'>
