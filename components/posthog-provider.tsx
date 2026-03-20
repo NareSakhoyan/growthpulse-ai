@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import posthog from 'posthog-js';
 
+import { analyticsEvents, captureEvent } from '@/lib/posthog';
+
 type PostHogProviderProps = {
   children: React.ReactNode;
 };
@@ -57,6 +59,31 @@ export function PostHogProvider({ children }: PostHogProviderProps): React.JSX.E
       $current_url: url,
     });
   }, [pathname, searchParams]);
+
+  useEffect(() => {
+    const capturedDepths = new Set<number>();
+    const thresholds = [25, 50, 75, 100];
+
+    function trackScrollDepth(): void {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight <= 0 ? 100 : Math.round((window.scrollY / scrollHeight) * 100);
+
+      thresholds.forEach((threshold) => {
+        if (progress >= threshold && !capturedDepths.has(threshold)) {
+          capturedDepths.add(threshold);
+          captureEvent(analyticsEvents.scrollDepth, {
+            depth_percent: threshold,
+            path: pathname,
+          });
+        }
+      });
+    }
+
+    trackScrollDepth();
+    window.addEventListener('scroll', trackScrollDepth, { passive: true });
+
+    return () => window.removeEventListener('scroll', trackScrollDepth);
+  }, [pathname]);
 
   return children;
 }

@@ -6,6 +6,7 @@ import { CursorTooltip } from '@/components/cursor-tooltip';
 import { AnimatedGrainyBg } from '@/components/ui/animated-grainy-bg';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { analyticsEvents, captureEvent } from '@/lib/posthog';
 import { cn } from '@/lib/utils';
 import { CheckIcon, SparklesIcon } from 'lucide-react';
 
@@ -96,7 +97,15 @@ export function PricingSection(): React.JSX.Element {
                     type='button'
                     aria-pressed={isSelected}
                     className='group relative block h-full w-full cursor-pointer overflow-visible text-left outline-hidden'
-                    onClick={() => setSelectedPlan(plan.name)}
+                    onClick={() => {
+                      setSelectedPlan(plan.name);
+                      captureEvent(analyticsEvents.ctaClicked, {
+                        cta_id: `pricing_${plan.name.toLowerCase()}`,
+                        cta_label: plan.cta,
+                        plan: plan.name,
+                        section: 'pricing',
+                      });
+                    }}
                   >
                     <Card
                       className={cn(

@@ -1,6 +1,9 @@
+'use client';
+
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { GlassCtaButton } from '@/components/ui/glass-cta-button';
+import { analyticsEvents, captureEvent } from '@/lib/posthog';
 
 export function OverviewSection(): React.JSX.Element {
   return (
@@ -24,10 +27,32 @@ export function OverviewSection(): React.JSX.Element {
 
           <div className='flex flex-col gap-3 sm:flex-row'>
             <GlassCtaButton asChild size='lg'>
-              <a href='#get-audit'>Get your audit</a>
+              <a
+                href='#get-audit'
+                onClick={() =>
+                  captureEvent(analyticsEvents.ctaClicked, {
+                    cta_id: 'hero_get_audit',
+                    cta_label: 'Get your audit',
+                    section: 'overview',
+                  })
+                }
+              >
+                Get your audit
+              </a>
             </GlassCtaButton>
             <GlassCtaButton asChild size='lg' tone='soft'>
-              <a href='#features'>See how it works</a>
+              <a
+                href='#features'
+                onClick={() =>
+                  captureEvent(analyticsEvents.ctaClicked, {
+                    cta_id: 'hero_see_how_it_works',
+                    cta_label: 'See how it works',
+                    section: 'overview',
+                  })
+                }
+              >
+                See how it works
+              </a>
             </GlassCtaButton>
           </div>
 

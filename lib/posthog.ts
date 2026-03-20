@@ -4,6 +4,7 @@ export const analyticsEvents = {
   ctaClicked: 'cta_clicked',
   formStarted: 'form_started',
   formSubmitted: 'form_submitted',
+  scrollDepth: 'scroll_depth',
   heroVariantSeen: 'hero_variant_seen',
   supabaseTestSucceeded: 'supabase_test_succeeded',
   supabaseTestFailed: 'supabase_test_failed',

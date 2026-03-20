@@ -23,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { analyticsEvents, captureEvent } from '@/lib/posthog';
 import { createClient, SupabaseClientConfigError } from '@/lib/supabase/client';
 
 type SubmissionState = 'idle' | 'loading' | 'success' | 'error';
@@ -72,6 +73,7 @@ function buildLeadInsert(values: LeadFormValues): LeadInsert {
 export function GetAuditSection(): React.JSX.Element {
   const [submissionState, setSubmissionState] = React.useState<SubmissionState>('idle');
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const hasTrackedFormStart = React.useRef(false);
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(leadFormSchema),
     defaultValues: {
@@ -94,6 +96,10 @@ export function GetAuditSection(): React.JSX.Element {
         throw error;
       }
 
+      captureEvent(analyticsEvents.formSubmitted, {
+        form_id: 'audit_request',
+        company_size: values.companySize,
+      });
       setSubmissionState('success');
       form.reset();
     } catch (error) {
@@ -104,6 +110,17 @@ export function GetAuditSection(): React.JSX.Element {
           : 'We could not send your request right now. Please try again in a minute.',
       );
     }
+  }
+
+  function handleFormStart(): void {
+    if (hasTrackedFormStart.current) {
+      return;
+    }
+
+    hasTrackedFormStart.current = true;
+    captureEvent(analyticsEvents.formStarted, {
+      form_id: 'audit_request',
+    });
   }
 
   return (
@@ -148,6 +165,7 @@ export function GetAuditSection(): React.JSX.Element {
                   <form
                     className='grid gap-5'
                     noValidate
+                    onFocusCapture={handleFormStart}
                     onSubmit={form.handleSubmit(handleSubmit)}
                   >
                     <div className='grid gap-5 md:grid-cols-2'>
