@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { usePathname, useSearchParams } from 'next/navigation';
 
@@ -15,6 +15,7 @@ function PostHogTracker(): null {
   const searchParams = useSearchParams();
   const currentUrlRef = useRef('');
   const hasLoadedAnalyticsRef = useRef(false);
+  const [analyticsReady, setAnalyticsReady] = useState(false);
 
   useEffect(() => {
     function startAnalytics(): void {
@@ -23,11 +24,8 @@ function PostHogTracker(): null {
       }
 
       hasLoadedAnalyticsRef.current = true;
+      setAnalyticsReady(true);
       preloadPostHog();
-
-      if (currentUrlRef.current) {
-        capturePageview(currentUrlRef.current);
-      }
     }
 
     function scheduleStart(): () => void {
@@ -47,9 +45,31 @@ function PostHogTracker(): null {
     }
 
     let cleanupScheduledStart: (() => void) | undefined;
+    let cleanupFallbackTimeout: (() => void) | undefined;
+
+    function handleFirstInteraction(): void {
+      cleanupInteractionListeners();
+      cleanupFallbackTimeout?.();
+      cleanupScheduledStart = scheduleStart();
+    }
+
+    function cleanupInteractionListeners(): void {
+      window.removeEventListener('pointerdown', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    }
 
     const handleLoad = (): void => {
-      cleanupScheduledStart = scheduleStart();
+      const fallbackTimeoutId = window.setTimeout(() => {
+        cleanupInteractionListeners();
+        cleanupScheduledStart = scheduleStart();
+      }, 8000);
+
+      cleanupFallbackTimeout = () => window.clearTimeout(fallbackTimeoutId);
+
+      window.addEventListener('pointerdown', handleFirstInteraction, { once: true, passive: true });
+      window.addEventListener('keydown', handleFirstInteraction, { once: true });
+      window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
     };
 
     if (document.readyState === 'complete') {
@@ -60,6 +80,8 @@ function PostHogTracker(): null {
 
     return () => {
       window.removeEventListener('load', handleLoad);
+      cleanupInteractionListeners();
+      cleanupFallbackTimeout?.();
       cleanupScheduledStart?.();
     };
   }, []);
@@ -70,20 +92,20 @@ function PostHogTracker(): null {
 
     currentUrlRef.current = url;
 
-    if (hasLoadedAnalyticsRef.current) {
+    if (analyticsReady) {
       capturePageview(url);
     }
-  }, [pathname, searchParams]);
+  }, [analyticsReady, pathname, searchParams]);
 
   useEffect(() => {
+    if (!analyticsReady) {
+      return;
+    }
+
     const capturedDepths = new Set<number>();
     const thresholds = [25, 50, 75, 100];
 
     function trackScrollDepth(): void {
-      if (!hasLoadedAnalyticsRef.current) {
-        return;
-      }
-
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = scrollHeight <= 0 ? 100 : Math.round((window.scrollY / scrollHeight) * 100);
 
@@ -101,7 +123,7 @@ function PostHogTracker(): null {
     window.addEventListener('scroll', trackScrollDepth, { passive: true });
 
     return () => window.removeEventListener('scroll', trackScrollDepth);
-  }, [pathname]);
+  }, [analyticsReady, pathname]);
 
   return null;
 }

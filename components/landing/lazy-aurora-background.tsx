@@ -1,9 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import * as React from 'react';
 
 import type { GrainyAnimatedBgProps } from '@/components/ui/animated-grainy-bg';
+import { useDeferredActivation } from '@/hooks/use-deferred-activation';
 
 const AnimatedGrainyBg = dynamic(
   () => import('@/components/ui/animated-grainy-bg').then((module) => module.AnimatedGrainyBg),
@@ -32,39 +32,15 @@ export function LazyAuroraBackground({
   className,
   ...props
 }: LazyAuroraBackgroundProps): React.JSX.Element {
-  const [shouldLoad, setShouldLoad] = React.useState(false);
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
-
-  React.useEffect(() => {
-    const currentElement = containerRef.current;
-
-    if (!currentElement) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) {
-          return;
-        }
-
-        setShouldLoad(true);
-        observer.disconnect();
-      },
-      {
-        rootMargin: '240px 0px',
-      },
-    );
-
-    observer.observe(currentElement);
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref: containerRef, isActive: shouldLoad } = useDeferredActivation({
+    rootMargin: '240px 0px',
+    idleTimeoutMs: 700,
+  });
 
   return (
     <div ref={containerRef} className='h-full'>
       {shouldLoad ? (
-        <AnimatedGrainyBg className={className} {...props}>
+        <AnimatedGrainyBg className={className} animate={shouldLoad} {...props}>
           {children}
         </AnimatedGrainyBg>
       ) : (

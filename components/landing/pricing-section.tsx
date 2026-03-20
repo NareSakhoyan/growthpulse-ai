@@ -1,4 +1,4 @@
-import { PricingCardsClient } from '@/components/landing/pricing-cards-client';
+import { PricingCardsLoader } from '@/components/landing/pricing-cards-loader';
 
 export function PricingSection(): React.JSX.Element {
   return (
@@ -17,7 +17,7 @@ export function PricingSection(): React.JSX.Element {
             </p>
           </div>
         </div>
-        <PricingCardsClient />
+        <PricingCardsLoader />
       </div>
     </section>
   );

@@ -5,11 +5,14 @@ import { PostHogProvider } from '@/components/posthog-provider';
 import './globals.css';
 
 const geistSans = Geist({
+  display: 'swap',
   variable: '--font-geist-sans',
   subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
+  display: 'swap',
+  preload: false,
   variable: '--font-geist-mono',
   subsets: ['latin'],
 });

@@ -18,7 +18,9 @@ export function CursorTooltip({
   disabled = false,
 }: CursorTooltipProps): React.JSX.Element {
   const [visible, setVisible] = React.useState(false);
-  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+  const tooltipRef = React.useRef<HTMLDivElement | null>(null);
+  const frameRef = React.useRef<number | null>(null);
+  const pendingPositionRef = React.useRef({ x: 0, y: 0 });
   const glassStyle: React.CSSProperties = {
     background: 'rgba(255, 255, 255, 0.2)',
     border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -28,14 +30,42 @@ export function CursorTooltip({
     WebkitBackdropFilter: 'blur(11.5px)',
   };
 
+  React.useEffect(() => {
+    return () => {
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, []);
+
+  function updatePosition(clientX: number, clientY: number): void {
+    pendingPositionRef.current = {
+      x: clientX + offsetX,
+      y: clientY + offsetY,
+    };
+
+    if (frameRef.current !== null) {
+      return;
+    }
+
+    frameRef.current = window.requestAnimationFrame(() => {
+      if (tooltipRef.current) {
+        tooltipRef.current.style.transform = `translate3d(${pendingPositionRef.current.x}px, ${pendingPositionRef.current.y}px, 0)`;
+      }
+
+      frameRef.current = null;
+    });
+  }
+
   return (
     <div
       className='block h-full'
-      onMouseEnter={() => {
+      onMouseEnter={(event) => {
         if (disabled) {
           return;
         }
 
+        updatePosition(event.clientX, event.clientY);
         setVisible(true);
       }}
       onMouseLeave={() => setVisible(false)}
@@ -44,20 +74,16 @@ export function CursorTooltip({
           return;
         }
 
-        setPosition({
-          x: event.clientX + offsetX,
-          y: event.clientY + offsetY,
-        });
+        updatePosition(event.clientX, event.clientY);
       }}
     >
       {children}
 
       {visible && !disabled ? (
         <div
-          className='pointer-events-none fixed z-50 px-3 py-1 text-xs font-medium whitespace-nowrap text-slate-900'
+          ref={tooltipRef}
+          className='pointer-events-none fixed top-0 left-0 z-50 px-3 py-1 text-xs font-medium whitespace-nowrap text-slate-900 will-change-transform'
           style={{
-            left: position.x,
-            top: position.y,
             ...glassStyle,
           }}
         >
