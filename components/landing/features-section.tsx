@@ -1,3 +1,4 @@
+import { IntegrationGrid } from '@/components/landing/integration-grid';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { GlassCtaButton } from '@/components/ui/glass-cta-button';
@@ -103,6 +104,7 @@ export function FeaturesSection(): React.JSX.Element {
             </CardHeader>
           </Card>
         </div>
+        <IntegrationGrid />
       </div>
     </section>
   );
